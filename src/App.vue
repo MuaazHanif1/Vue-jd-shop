@@ -1,6 +1,7 @@
 <template>
 <HeaderComponent/>
 <br>
+<h1>Maria!</h1>
 
 </template>
 <script setup>
