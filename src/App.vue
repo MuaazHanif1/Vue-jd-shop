@@ -1,8 +1,13 @@
 <template>
 <HeaderComponent/>
 <h1>M.ABDULLAH ARSHAD</h1>
+<h1>Talha</h1>
+<h1>Welcome to my website 1</h1>
 <br>
-
+<h1>Maria!!</h1>
+<h1>iqra</h1>
+<h1>umaima</h1>
+<h1>Naqi sab</h1>
 </template>
 <script setup>
 import HeaderComponent from './components/Header-Component.vue';
