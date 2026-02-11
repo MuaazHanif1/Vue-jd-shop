@@ -1,6 +1,6 @@
 <template>
 <HeaderComponent/>
-<h1>M.ABDULLAH ARSHAD</h1>
+<h1 style="color: aliceblue; background-color: aqua;">M.ABDULLAH ARSHAD</h1>
 <h1>Talha</h1>
 <h1>Welcome to my website 1</h1>
 <br>
