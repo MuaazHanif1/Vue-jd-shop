@@ -1,5 +1,6 @@
 <template>
 <HeaderComponent/>
+<h1>Welcome to my website 1</h1>
 <br>
 <h1>Maria!</h1>
 
