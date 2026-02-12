@@ -2,14 +2,14 @@
 <HeaderComponent/>
 <div class="container">
 <div class="students">
-  <h1>Students in Web development 2nd batch</h1>
+  <i><h1>Students in Web development 2nd batch</h1></i>
   <ol>
-<li>M.ABDULLAH ARSHAD</li>
-<li>Talha</li>
-<li>Maria!!</li>
-<li>iqra</li>
-<li>umaima</li>
-<li>Naqi sab</li>
+    <i><li>iqra Khanzadii!</li>
+      <li>Maria Khanim!!</li>
+     <li>umaima fuhaira!</li>
+     <li>M.ABDULLAH ARSHAD!</li>
+      <li>Talha!</li>
+      <li>Naqi sab!</li></i>
 </ol>
 </div>
 </div>
@@ -35,11 +35,12 @@ import HeaderComponent from './components/Header-Component.vue';
 }
 li{
   font-size: 23px;
-  margin-top: 10px;
-  text-transform: uppercase;
+  margin-top: 30px;
+  font-weight:900;
+  color: rgb(48, 84, 85);
 }
 h1{
-  color:blue;
+  color:rgb(26, 48, 49);
   text-transform: capitalize;
 }
 /* .color-blue{
