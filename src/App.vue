@@ -5,9 +5,9 @@
   <i><h1>Students in Web development 2nd batch</h1></i>
   <ul>
     <i><li>iqra Khanzadii!</li>
-      <li>Maria Khanim!!</li>
+      <li>Maria Khanim!</li>
      <li>umaima fuhaira!</li>
-     <li>M.ABDULLAH ARSHAD!</li>
+     <li>M.Abdullah Arshad!</li>
       <li>Talha!</li>
       <li>Naqi sab!</li></i>
 </ul>
