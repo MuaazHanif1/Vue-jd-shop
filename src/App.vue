@@ -8,9 +8,10 @@
       <li>iqra Khanzadii!</li>
       <li>Maria Khanim!</li>
       <li>umaima fuhaira!</li>
-      <li>M.Abdullah Arshad! hi</li>
+      <li>M.Abdullah Arshad!</li>
       <li>Talha!</li>
       <li>Naqi sab!</li>
+
     </i>
 </ul>
 </div>
