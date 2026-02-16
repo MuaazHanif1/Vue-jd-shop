@@ -1,7 +1,7 @@
 <template>
-<HeaderComponent/>
+<HeaderComponent :navList="linkList" :user="user"/>
 <div class="container">
-<div class="students">
+<!-- <div class="students">
   <i><h1>Students in Web development 2nd batch</h1></i>
   <ul>
     <i>
@@ -15,11 +15,17 @@
 
     </i>
 </ul>
-</div>
+</div> -->
 </div>
 </template>
 <script setup>
 import HeaderComponent from './components/Header-Component.vue';
+const linkList = [{name:'Home',path:"/Home"},{name:'shop',path:"/shop"},{name:'about',path:"/about"},{name:'Contact',path:"/contact"},{name:'Add Product',path:"/add-product"}]
+
+const user= {
+  name:'muaaz',
+  role:'user'
+}
 </script>
 
 <style scoped>
