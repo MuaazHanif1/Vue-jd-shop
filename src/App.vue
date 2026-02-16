@@ -4,12 +4,14 @@
 <div class="students">
   <i><h1>Students in Web development 2nd batch</h1></i>
   <ul>
-    <i><li>iqra Khanzadii!</li>
+    <i>
+      <li>iqra Khanzadii!</li>
       <li>Maria Khanim!</li>
-     <li>umaima fuhaira!</li>
-     <li>M.Abdullah Arshad!</li>
+      <li>umaima fuhaira!</li>
+      <li>M.Abdullah Arshad!</li>
       <li>Talha!</li>
-      <li>Naqi sab!</li></i>
+      <li>Naqi sab!</li>
+    </i>
 </ul>
 </div>
 </div>
@@ -43,6 +45,9 @@ ul{
 h1{
   
   color:rgb(26, 48, 49);
+  text-transform: capitalize;
+}
+li{
   text-transform: capitalize;
 }
 /* .color-blue{

@@ -8,7 +8,7 @@
            <a href="#" class="margin-10 nav-link">Shop</a>
            <a href="./about.html" class="margin-10 nav-link">About</a>
            <a href="#" class="margin-10 nav-link">Contact</a>
-           <a href="./addnewproduct.html">New Product</a>
+           <a href="./addnewproduct.html" class="margin-10 nav-link">New Product</a>
         </nav>
     </header>
 </template>
