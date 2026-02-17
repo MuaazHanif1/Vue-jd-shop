@@ -10,7 +10,8 @@
            <a href="#" class="margin-10 nav-link">Contact</a>
            <a href="./addnewproduct.html" class="margin-10 nav-link">New Product</a> -->
            <a href="#" v-for="(current,index ) in navList" class="margin-10 nav-link" >
-           <span v-if="user.role == 'user' && current.name !== 'Add Product'">{{current.name}}</span> 
+           <span v-if="current.name !== 'Add Product'">{{current.name}}</span> 
+           <span v-else-if="user.role == 'admin' && current.name == 'Add Product'">{{current.name}}</span>
         </a> 
         </nav>
     </header>
