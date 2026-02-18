@@ -9,10 +9,12 @@
      </li>
        
     </ui>
+    <Child :studentRecord="studentRecord"></Child>
 </template>
 
 <script setup>
 defineProps(['studentRecord'])
+import Child from './child.vue';
 </script>
 
 <style>

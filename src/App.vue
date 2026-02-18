@@ -1,6 +1,7 @@
 <template>
 <HeaderComponent :navList="linkList" :user="user"/>
 <StudentComponent :studentRecord="studentRecord"></StudentComponent>
+
 <div class="container">
 <!-- <div class="students">
   <i><h1>Students in Web development 2nd batch</h1></i>
@@ -20,10 +21,11 @@
 </div>
 </template>
 <script setup>
+
 import HeaderComponent from './components/Header-Component.vue';
 import StudentComponent from './components/Student-Component.vue';
 const linkList = [{name:'Home',path:"/Home"},{name:'shop',path:"/shop"},{name:'about',path:"/about"},{name:'Contact',path:"/contact"},{name:'Add Product',path:"/add-product"}]
-const studentRecord=[{name:'Ali', number:30},{name:'Ali1', number:39},{name:'Ali2', number:40},{name:'Ali3', number:60},{name:'Ali4', number:70},{name:'Ali5', number:70},{name:'Ali6', number:80},{name:'Ali7', number:90},{name:'Ali8', number:99},]
+
 
 const user= {
   name:'muaaz',
