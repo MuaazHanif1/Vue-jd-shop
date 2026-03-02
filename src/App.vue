@@ -1,30 +1,15 @@
 <template>
-<HeaderComponent :navList="linkList" :user="user"/>
-<StudentComponent :studentRecord="studentRecord"></StudentComponent>
-
-<div class="container">
-<!-- <div class="students">
-  <i><h1>Students in Web development 2nd batch</h1></i>
-  <ul>
-    <i>
-      <li>iqra Khanzadii!</li>
-      <li>Maria Khanim!</li>
-      <li>umaima fuhaira!</li>
-      <li>M.Abdullah Arshad!</li>
-      <li>Talha!</li>
-      <li>Naqi sab!</li>
-      <li>Muaaz</li>
-
-    </i>
-</ul>
-</div> -->
-</div>
+  <HeaderComponent :navList="linkList" :user="user"></HeaderComponent>
+  <main>
+    <RouterView />
+  </main>
 </template>
+
 <script setup>
 
-import HeaderComponent from './components/Header-Component.vue';
-import StudentComponent from './components/Student-Component.vue';
-const linkList = [{name:'Home',path:"/Home"},{name:'shop',path:"/shop"},{name:'about',path:"/about"},{name:'Contact',path:"/contact"},{name:'Add Product',path:"/add-product"}]
+ import HeaderComponent from './components/Header-Component.vue';
+// import StudentComponent from './components/Student-Component.vue';
+ const linkList = [{name:'Home',path:"/"},{name:'shop',path:"/shop"},{name:'about',path:"/about"},{name:'Contact',path:"/contact"},{name:'Add Product',path:"/product"}]
 
 
 const user= {
