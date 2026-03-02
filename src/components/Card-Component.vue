@@ -12,19 +12,18 @@
 
 <script setup>
 let props =  defineProps({
-    productId:{
-        type:String|Number 
+    productId: {
+        type: [String, Number]
     },
-    productImage:{
-        type:String
+    productImage: {
+        type: String
     },
-    productTitle:{
-        type:String
+    productTitle: {
+        type: String
     },
-    productPrice:{
-       type: String | Number
+    productPrice: {
+       type: [String, Number]
     }
-
 })
 
 let emit = defineEmits(['deleteProduct','openAddProductPage'])

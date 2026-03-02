@@ -5,7 +5,13 @@
             Hello world!
           </h1>
          <div id="product-list" class="product-list flex-center">
-           <!-- <CardComponent></CardComponent> -->
+         <CardComponent v-for="value in productData" 
+                    :productId="value.id"
+                    :productImage="value.image"
+                    :productTitle="value.title"
+                    :productPrice="value.price"
+                />
+        
          </div>
     </section>
 
@@ -23,6 +29,6 @@ let productData = ref([])
 const dataFetch = async()=>{
     let response = await fetch('https://fakestoreapi.com/products')  
     let data  = await response.json()
-    productData = data
+    productData.value = data
 }
 </script>

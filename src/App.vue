@@ -3,11 +3,14 @@
   <main>
     <RouterView />
   </main>
+  <FooterCompnent></FooterCompnent>
 </template>
 
 <script setup>
 
- import HeaderComponent from './components/Header-Component.vue';
+
+import HeaderComponent from './components/Header-Component.vue';
+import FooterCompnent from '@/components/Footer-Compnent.vue';
 // import StudentComponent from './components/Student-Component.vue';
  const linkList = [{name:'Home',path:"/"},{name:'shop',path:"/shop"},{name:'about',path:"/about"},{name:'Contact',path:"/contact"},{name:'Add Product',path:"/product"}]
 
