@@ -2,7 +2,7 @@
         <!--section footer-->
         <section>
         <footer class="footer">
-            <p>JD. All Right Reserved</p>
+            <p>&copy; 2026 JD. All Right Reserved</p>
         </footer>
     </section>
 </template>
