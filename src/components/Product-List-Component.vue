@@ -10,6 +10,7 @@
                     :productImage="value.image"
                     :productTitle="value.title"
                     :productPrice="value.price"
+                    @deleteProduct="productDelete"
                 />
         
          </div>
@@ -26,6 +27,17 @@ onMounted(()=>{
 
 let productData = ref([])
 
+const productDelete = async (product_id)=>{
+      let response = await fetch(`https://fakestoreapi.com/products/${product_id}`,{
+        method: "Delete"
+    })
+    let data  = await response.json()
+    console.log(data)
+    if(data){
+        productData.value = productData.value.filter(current => current.id !== product_id)
+    }
+     
+}
 const dataFetch = async()=>{
     let response = await fetch('https://fakestoreapi.com/products')  
     let data  = await response.json()
