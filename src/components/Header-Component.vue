@@ -10,7 +10,7 @@
            <a href="#" class="margin-10 nav-link">Contact</a>
            <a href="./addnewproduct.html" class="margin-10 nav-link">New Product</a> -->
            <RouterLink  v-for="(current,index ) in navList"  :to="current.path" class="margin-10 nav-link" >
-           <span v-if="current.name !== 'Add Product'">{{current.name}}</span> 
+           <span v-if="current.name !== 'Add Product'" class="text-cappitilize">{{current.name}}</span> 
            <span v-else-if="user.role == 'admin' && current.name == 'Add Product'">{{current.name}}</span>
            </RouterLink>
         </nav>

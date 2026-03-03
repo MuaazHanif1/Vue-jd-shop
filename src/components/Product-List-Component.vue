@@ -11,6 +11,7 @@
                     :productTitle="value.title"
                     :productPrice="value.price"
                     @deleteProduct="productDelete"
+                    @AddProduct="openAddProductPage"
                 />
         
          </div>
@@ -42,5 +43,8 @@ const dataFetch = async()=>{
     let response = await fetch('https://fakestoreapi.com/products')  
     let data  = await response.json()
     productData.value = data
+}
+const openAddProductPage = (productId)=>{
+    window.location.href = `add-new-product.html?id=${productId}`
 }
 </script>

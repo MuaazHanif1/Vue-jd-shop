@@ -23,6 +23,67 @@
     </div>
 </div>
 </template>
+
+<script setup>
+const submit = () => {
+    try{
+        var title = document.getElementById('title').value
+        var description = document.getElementById('description').value
+        var price = document.getElementById('price').value
+        var img = document.getElementById('img').value
+        console.log(title,description,price,img)
+    
+        var obj = {
+            title : title,
+            price : price,
+            description: description,
+            image: img
+    
+        }
+        if(productId){
+          updateProductFetch(productId,obj)
+        }
+        else{
+            submitPostRequest(obj)
+        }
+        
+    }
+
+    catch(e){
+        console.log(e)
+    }
+}
+const submitPostRequest = async (data) => {
+  try{
+    var response = await fetch('https://fakestoreapi.com/products', {
+        method: "POST",
+        headers: {
+            'Content-Type': 'application/json' 
+        },
+        body: JSON.stringify({
+            title: data.title,
+            price: data.price,
+            description: data.description,
+            image: data.image,
+            category: 'electronics'
+        })
+    })
+    
+    var data = await response.json()
+    var allProductList = JSON.parse(localStorage.getItem('ProductList'))
+    allProductList.push(data)
+    localStorage.setItem('ProductList',JSON.stringify(allProductList))
+    alert('Product added successfully!')
+    window.location.href = 'index.html' 
+    console.log("Successfully created product (mock):", data);
+    
+  }
+  catch(e){
+    console.error(e)
+  }
+}
+</script>
+
 <style scoped>
 .flex{
     display: flex;
@@ -74,92 +135,3 @@ button:hover{
 }
 
 </style>
-<script setup>
-function openAddProductPage(productId) {
-    window.location.href = `add-new-product.html?id=${productId}`
-}
-
-
-document.addEventListener('DOMContentLoaded', getOneProductData)
-
-
-async function getOneProductData() {
-    try {
-        var params = new URLSearchParams(window.location.search)
-        productId = params.get('id')
-
-        if (productId) {
-            var allProductData = JSON.parse(localStorage.getItem('products'))
-            if (allProductData && allProductData.length > 0) {
-                var singleProductData = allProductData.find(current => current.id == productId)
-                updateDomWithSigleProductData(singleProductData)
-            }
-            else {
-                var response = await fetch(`https://fakestoreapi.com/products/${productId}`)
-                var data = await response.json()
-                console.log('data', data)
-                updateDomWithSigleProductData(data)
-            }
-        }
-    }
-    catch (error) {
-        console.error(error)
-    }
-
-
-}
-
-function updateDomWithSigleProductData(obj) {
-    document.getElementById('title').value = obj.title
-    document.getElementById('description').value = obj.description
-    document.getElementById('price').value = obj.price
-    document.getElementById('img').value = obj.image
-    document.getElementById('button').innerText = "Update"
-    document.getElementById('form').innerText = "Update Product"
-
-}
-async function submit() {
-    try {
-        var title = document.getElementById('title').value
-        var description = document.getElementById('description').value
-        var price = document.getElementById('price').value
-        var image = document.getElementById('img').value
-
-        var params = new URLSearchParams(window.location.search)
-        productId = params.get('id')
-
-        if (productId) {
-            var response = await fetch(`https://fakestoreapi.com/products/${productId}`, {
-                method: "PUT",
-                body: JSON.stringify({
-                    title: title,
-                    description: description,
-                    price: price,
-                    image: image
-                })
-            })
-            var data = await response.json()
-            console.log('data', data)
-            alert("Product updated successfully")
-        }
-        else {
-            var response = await fetch(`https://fakestoreapi.com/products`, {
-                method: "POST",
-                body: JSON.stringify({
-                    title: title,
-                    description: description,
-                    price: price,
-                    image: image
-                })
-            })
-            var data = await response.json()
-            console.log('data', data)
-            alert("Product added successfully")
-        }
-
-    }
-    catch (error) {
-        console.error(error)
-    }
-}
-</script>
