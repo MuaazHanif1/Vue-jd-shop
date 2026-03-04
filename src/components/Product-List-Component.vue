@@ -1,9 +1,8 @@
 <template>
     <section class="products mt-[60px] mb-[60px] mr-[40px] ml-[40px]">
-         <h2>Featured Products</h2>
-         <h1 class="text-3xl font-bold text-underline">
-            Hello world!
-          </h1>
+        <hr class="bg-linear-to-r from-pink-500 to-violet-500 bg-clip-text">
+         <h2 class="bg-linear-to-r from-pink-500 to-violet-500 bg-clip-text text-5xl font-extrabold text-transparent uppercase underline mt-60px">Featured Products</h2>
+            <p class="text-center text-gray-500 mt-20px mb-20px">Lorem ipsum dolor sit amet consectetur adipisicing elit. Voluptas, eaque.</p>
          <div id="product-list" class="product-list flex-center">
          <CardComponent v-for="value in productData" 
                     :productId="value.id"
@@ -11,13 +10,18 @@
                     :productTitle="value.title"
                     :productPrice="value.price"
                     @deleteProduct="productDelete"
+                    @AddProduct="openAddProductPage"
                 />
         
          </div>
     </section>
 
 </template>
-
+<style scoped>
+.mt-60px{
+    margin-top: 20px;
+}
+</style>
 <script setup>
 import { ref,onMounted } from 'vue';
 import CardComponent from './Card-Component.vue'; 
@@ -42,5 +46,8 @@ const dataFetch = async()=>{
     let response = await fetch('https://fakestoreapi.com/products')  
     let data  = await response.json()
     productData.value = data
+}
+const openAddProductPage = (productId)=>{
+    window.location.href = `add-new-product.html?id=${productId}`
 }
 </script>

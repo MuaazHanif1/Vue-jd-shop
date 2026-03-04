@@ -1,12 +1,12 @@
 <template>
 
-<div class="product-card p-[30px] box-shadow">
+<div class="product-card p-[30px] shadow-xl/20 rounded-lg">
     <img :src="productImage" :alt="productTitle">
-      <h3>{{productTitle}}</h3>
+      <h3 class="font-bold">{{productTitle}}</h3>
       <p>Rs: {{productPrice}}</p>
      <button >Buy now</button>
-    <button @click="deletePro">Delete</button>
-    <button @click="newAddPage">Edit</button>   
+    <button class="delete" @click="deletePro">Delete</button>
+    <button class="edit" @click="newAddPage">Edit</button>   
 </div>
 </template>
 

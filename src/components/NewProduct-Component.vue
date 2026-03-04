@@ -1,28 +1,91 @@
 <template>
-<div class="flex">  
+<div class="flex ">  
     <div class="border-2 flex-col  border-gray-300 rounded-lg p-8 w-[400px] shadow-lg text-center">
         <h2 class="text-2xl font-bold text">Add new Product</h2>
         <!--label-->
         <label>Enter Product Title </label>
         <!--input-->
-        <input class="border-1 border-black-22" type="text" placeholder="e.g: Men shoes" required id="title">
+        <input class="border-1 border-black-22" type="text" placeholder="e.g: Men shoes" required v-model="title">
         <!--label-->
         <label>Enter Product disprection </label>
         <!--input-->
-        <input class="border-1 border-black-22" type="text" placeholder="e.g: Men shoes for runing" required  id="description">
+        <input class="border-1 border-black-22" type="text" placeholder="e.g: Men shoes for runing" required  v-model="description">
         <!--label-->
         <label>Enter Product price </label>
         <!--input-->
-        <input class="border-1 border-black-22" type="number" placeholder="e.g: 99.9 $" required id="price">
+        <input class="border-1 border-black-22" type="number" placeholder="e.g: 99.9 $" required v-model="price">
         <!--label-->
         <label>Enter Product image url </label>
         <!--input-->
-        <input class="border-1 border-black-22" type="text" placeholder="Product image url" required id="img">
+        <input class="border-1 border-black-22" type="text" placeholder="Product image url" required v-model="img">
 
-       <button class="button" type="button" @click="submit" id="button">Submit</button>
+       <button class="button" type="button" @click="submit">Submit</button>
     </div>
 </div>
 </template>
+
+<script setup>
+import { ref } from 'vue';
+
+const submit = () => {
+    try{
+        var title = ref('')
+        var description = ref('')
+        var price = ref('')
+        var img = ref('')
+        console.log(title,description,price,img)
+    
+        var obj = {
+            title : title,
+            price : price,
+            description: description,
+            image: img
+    
+        }
+        // if(productId){
+        //   updateProductFetch(productId,obj)
+        // }
+        // else{
+            
+        // }
+     submitPostRequest(obj)   
+    }
+
+    catch(e){
+        console.log(e)
+    }
+}
+const submitPostRequest = async (data) => {
+  try{
+    var response = await fetch('https://fakestoreapi.com/products', {
+        method: "POST",
+        headers: {
+            'Content-Type': 'application/json' 
+        },
+        body: JSON.stringify({
+            title: data.title,
+            price: data.price,
+            description: data.description,
+            image: data.image,
+            category: 'electronics'
+        })
+    })
+    
+    var data = await response.json()
+    // var allProductList = JSON.parse(localStorage.getItem('ProductList'))
+    // allProductList.push(data)
+    // localStorage.setItem('ProductList',JSON.stringify(allProductList))
+    alert('Product added successfully!')
+    // window.location.href = '/' 
+    console.log("Successfully created product (mock):", data);
+    
+  }
+  catch(e){
+    console.error(e)
+  }
+}
+</script>
+
 <style scoped>
 .flex{
     display: flex;
@@ -31,6 +94,7 @@
     flex-direction: column;
     margin-top: 30px;
     margin-bottom: 20px;
+    height: 80%;
 }
 input{
     width: 98%;
@@ -74,92 +138,3 @@ button:hover{
 }
 
 </style>
-<script setup>
-function openAddProductPage(productId) {
-    window.location.href = `add-new-product.html?id=${productId}`
-}
-
-
-document.addEventListener('DOMContentLoaded', getOneProductData)
-
-
-async function getOneProductData() {
-    try {
-        var params = new URLSearchParams(window.location.search)
-        productId = params.get('id')
-
-        if (productId) {
-            var allProductData = JSON.parse(localStorage.getItem('products'))
-            if (allProductData && allProductData.length > 0) {
-                var singleProductData = allProductData.find(current => current.id == productId)
-                updateDomWithSigleProductData(singleProductData)
-            }
-            else {
-                var response = await fetch(`https://fakestoreapi.com/products/${productId}`)
-                var data = await response.json()
-                console.log('data', data)
-                updateDomWithSigleProductData(data)
-            }
-        }
-    }
-    catch (error) {
-        console.error(error)
-    }
-
-
-}
-
-function updateDomWithSigleProductData(obj) {
-    document.getElementById('title').value = obj.title
-    document.getElementById('description').value = obj.description
-    document.getElementById('price').value = obj.price
-    document.getElementById('img').value = obj.image
-    document.getElementById('button').innerText = "Update"
-    document.getElementById('form').innerText = "Update Product"
-
-}
-async function submit() {
-    try {
-        var title = document.getElementById('title').value
-        var description = document.getElementById('description').value
-        var price = document.getElementById('price').value
-        var image = document.getElementById('img').value
-
-        var params = new URLSearchParams(window.location.search)
-        productId = params.get('id')
-
-        if (productId) {
-            var response = await fetch(`https://fakestoreapi.com/products/${productId}`, {
-                method: "PUT",
-                body: JSON.stringify({
-                    title: title,
-                    description: description,
-                    price: price,
-                    image: image
-                })
-            })
-            var data = await response.json()
-            console.log('data', data)
-            alert("Product updated successfully")
-        }
-        else {
-            var response = await fetch(`https://fakestoreapi.com/products`, {
-                method: "POST",
-                body: JSON.stringify({
-                    title: title,
-                    description: description,
-                    price: price,
-                    image: image
-                })
-            })
-            var data = await response.json()
-            console.log('data', data)
-            alert("Product added successfully")
-        }
-
-    }
-    catch (error) {
-        console.error(error)
-    }
-}
-</script>
