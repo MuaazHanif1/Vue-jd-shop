@@ -13,10 +13,8 @@
                     @openAddProductPage="openAddProductPage"
                     @Buynow="Buynow"
                 />
-        
          </div>
     </section>
-
 </template>
 <style scoped>
 .mt-60px{
@@ -42,8 +40,7 @@ const productDelete = async (product_id)=>{
     console.log(data)
     if(data){
         productData.value = productData.value.filter(current => current.id !== product_id)
-    }
-     
+    }    
 }
 const dataFetch = async()=>{
     let response = await fetch('https://fakestoreapi.com/products')  
