@@ -1,7 +1,8 @@
 <template>
 <div class="flex ">  
     <div class="border-2 flex-col  border-gray-300 rounded-lg p-8 w-[400px] shadow-lg text-center">
-        <h2 class="text-2xl font-bold text">Add new Product</h2>
+      
+      <h2 class="text-2xl font-bold text">{{ productId ? 'Edit Product' : 'Add new Product' }}</h2>
         <!--label-->
         <label>Enter Product Title </label>
         <!--input-->
@@ -19,22 +20,34 @@
         <!--input-->
         <input class="border-1 border-black-22" type="text" placeholder="Product image url" required v-model="img">
 
-       <button class="button" type="button" @click="submit">Submit</button>
+       <button class="button" type="button" @click="submit">{{productId ? 'Update Product' : 'Add Product'}}</button>
     </div>
 </div>
 </template>
 
 <script setup>
-import { ref } from 'vue'
-import { useRoute } from 'vue-router'
+import { useRoute, useRouter } from 'vue-router'
+import { ref, onMounted } from 'vue'
+
 const route = useRoute()
-console.log(route.params.id)
+const router = useRouter()
+
 const title = ref('')
 const description = ref('')
 const price = ref('')
 const img = ref('')
+const productId = route.params.id
+
+const isPageLoading = ref(false)
+
+onMounted(() => {
+  if (productId) {
+    getOneProductData()
+  }
+})
 
 const submit = () => {
+
   if (!title.value || !description.value || !price.value || !img.value) {
     alert('Please fill all the fields')
     return
@@ -47,32 +60,44 @@ const submit = () => {
     image: img.value
   }
 
-  submitPostRequest(obj)
+  if (productId) {
+    updateProductFetch(productId, obj)
+  } else {
+    submitPostRequest(obj)
+  }
+}
+
+const updateProductFetch = async (id, obj) => {
+  try {
+    const response = await fetch(`https://fakestoreapi.com/products/${id}`, {
+      method: "PUT",
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify(obj)
+    })
+
+    await response.json()
+    alert('Product updated successfully!')
+    router.push('/')
+
+  } catch (error) {
+    console.error(error)
+  }
 }
 
 const submitPostRequest = async (data) => {
   try {
     const response = await fetch('https://fakestoreapi.com/products', {
       method: "POST",
-      headers: {
-        'Content-Type': 'application/json'
-      },
+      headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify({
         ...data,
         category: 'electronics'
       })
     })
 
-    const result = await response.json()
-
+    await response.json()
     alert('Product added successfully!')
-    console.log("Successfully created product:", result)
-
-    // optional reset form
-    title.value = ''
-    description.value = ''
-    price.value = ''
-    img.value = ''
+    router.push('/')
 
   } catch (e) {
     console.error(e)
@@ -80,33 +105,31 @@ const submitPostRequest = async (data) => {
 }
 
 const getOneProductData = async () => {
-  try{
-       const productId = route.params.id
-       console.log('productId', productId)
-     if(productId){
-        var response = await fetch(`https://fakestoreapi.com/products/${productId}`)
-        var data = await response.json()
-        console.log('data', data)
-        updateDomWithSigleProductData(data)
-      }
-   }
-  catch(error){
+  isPageLoading.value = true 
+
+  try {
+    const response = await fetch(`https://fakestoreapi.com/products/${productId}`)
+    const data = await response.json()
+
+    title.value = data.title
+    description.value = data.description
+    price.value = data.price
+    img.value = data.image
+
+  } catch (error) {
     console.error(error)
+  } finally {
+    isPageLoading.value = false
   }
-
-      
 }
-if(route.params.id){
-    getOneProductData()
-}
-function updateDomWithSigleProductData(obj){
-    title.value = obj.title
-    description.value = obj.description
-    price.value = obj.price
-    img.value = obj.image
-}
-
 </script>
+
+
+
+
+
+
+
 <style scoped>
 .flex{
     display: flex;

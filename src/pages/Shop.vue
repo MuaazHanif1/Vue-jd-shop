@@ -4,7 +4,7 @@
    </template>
    
    <script setup>
-   import ShopComponents from '@/components/shop-components.vue'
+   import ShopComponents from '@/components/Shop-components.vue'
    
     
    </script>

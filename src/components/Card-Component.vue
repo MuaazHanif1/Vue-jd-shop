@@ -11,31 +11,29 @@
 </template>
 
 <script setup>
-let props =  defineProps({
-    productId: {
-        type: [String, Number]
-    },
-    productImage: {
-        type: String
-    },
-    productTitle: {
-        type: String
-    },
-    productPrice: {
-       type: [String, Number]
-    }
+let props = defineProps({
+    productId: [String, Number],
+    productImage: String,
+    productTitle: String,
+    productPrice: [String, Number]
 })
 
-let emit = defineEmits(['deleteProduct','openAddProductPage'])
+let emit = defineEmits(['deleteProduct','openAddProductPage','Buynow'])
 
-const deletePro = ()=>{
-        emit('deleteProduct',props.productId)
+const deletePro = () => {
+    emit('deleteProduct', props.productId)
 }
-const newAddPage = ()=>{
-    emit('openAddProductPage',props.productId)
-}   
 
-const buyProduct=()=>{
-     emit('Buynow',{id:props.productId,image:props.productImage,Tittle:props. productTitle,Price:props. productPrice})
+const newAddPage = () => {
+    emit('openAddProductPage', props.productId)
+}
+
+const buyProduct = () => {
+    emit('Buynow', {
+        id: props.productId,
+        image: props.productImage,
+        title: props.productTitle,   // ✅ FIXED
+        price: props.productPrice    // ✅ FIXED
+    })
 }
 </script>
