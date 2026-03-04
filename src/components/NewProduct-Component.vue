@@ -1,7 +1,7 @@
 <template>
 <div class="flex ">  
     <div class="border-2 flex-col  border-gray-300 rounded-lg p-8 w-[400px] shadow-lg text-center">
-      
+      <Lodding v-if="isPageLoading" class="text-center bg-linear-to-r from-pink-500 to-violet-500 bg-clip-text text-5xl font-extrabold text-transparent uppercase underline mt-60px">Lodding...</Lodding>
       <h2 class="text-2xl font-bold text">{{ productId ? 'Edit Product' : 'Add new Product' }}</h2>
         <!--label-->
         <label>Enter Product Title </label>
