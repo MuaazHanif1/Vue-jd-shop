@@ -25,67 +25,88 @@
 </template>
 
 <script setup>
-import { ref } from 'vue';
+import { ref } from 'vue'
+import { useRoute } from 'vue-router'
+const route = useRoute()
+console.log(route.params.id)
+const title = ref('')
+const description = ref('')
+const price = ref('')
+const img = ref('')
 
 const submit = () => {
-    try{
-        var title = ref('')
-        var description = ref('')
-        var price = ref('')
-        var img = ref('')
-        console.log(title,description,price,img)
-    
-        var obj = {
-            title : title,
-            price : price,
-            description: description,
-            image: img
-    
-        }
-        // if(productId){
-        //   updateProductFetch(productId,obj)
-        // }
-        // else{
-            
-        // }
-     submitPostRequest(obj)   
-    }
-
-    catch(e){
-        console.log(e)
-    }
-}
-const submitPostRequest = async (data) => {
-  try{
-    var response = await fetch('https://fakestoreapi.com/products', {
-        method: "POST",
-        headers: {
-            'Content-Type': 'application/json' 
-        },
-        body: JSON.stringify({
-            title: data.title,
-            price: data.price,
-            description: data.description,
-            image: data.image,
-            category: 'electronics'
-        })
-    })
-    
-    var data = await response.json()
-    // var allProductList = JSON.parse(localStorage.getItem('ProductList'))
-    // allProductList.push(data)
-    // localStorage.setItem('ProductList',JSON.stringify(allProductList))
-    alert('Product added successfully!')
-    // window.location.href = '/' 
-    console.log("Successfully created product (mock):", data);
-    
+  if (!title.value || !description.value || !price.value || !img.value) {
+    alert('Please fill all the fields')
+    return
   }
-  catch(e){
+
+  const obj = {
+    title: title.value,
+    price: price.value,
+    description: description.value,
+    image: img.value
+  }
+
+  submitPostRequest(obj)
+}
+
+const submitPostRequest = async (data) => {
+  try {
+    const response = await fetch('https://fakestoreapi.com/products', {
+      method: "POST",
+      headers: {
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify({
+        ...data,
+        category: 'electronics'
+      })
+    })
+
+    const result = await response.json()
+
+    alert('Product added successfully!')
+    console.log("Successfully created product:", result)
+
+    // optional reset form
+    title.value = ''
+    description.value = ''
+    price.value = ''
+    img.value = ''
+
+  } catch (e) {
     console.error(e)
   }
 }
-</script>
 
+const getOneProductData = async () => {
+  try{
+       const productId = route.params.id
+       console.log('productId', productId)
+     if(productId){
+        var response = await fetch(`https://fakestoreapi.com/products/${productId}`)
+        var data = await response.json()
+        console.log('data', data)
+        updateDomWithSigleProductData(data)
+      }
+   }
+  catch(error){
+    console.error(error)
+  }
+
+      
+}
+if(route.params.id){
+    getOneProductData()
+}
+function updateDomWithSigleProductData(obj){
+    title.value = obj.title
+    description.value = obj.description
+    price.value = obj.price
+    img.value = obj.image
+}
+
+</script>
 <style scoped>
 .flex{
     display: flex;

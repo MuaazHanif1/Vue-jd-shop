@@ -10,8 +10,12 @@
                     :productTitle="value.title"
                     :productPrice="value.price"
                     @deleteProduct="productDelete"
+<<<<<<< HEAD
                     @AddProduct="openAddProductPage"
                     @Buynow="Buynow"
+=======
+                    @openAddProductPage="openAddProductPage"
+>>>>>>> 73ab124b6400557856f626f61883b40891bc9a29
                 />
         
          </div>
@@ -30,6 +34,9 @@ import CardComponent from './Card-Component.vue';
 onMounted(()=>{
     dataFetch()
 })
+import { useRoute } from 'vue-router'
+const route = useRoute()
+console.log(route.params.id)
 
 
 const store = useMyStore()
@@ -51,7 +58,8 @@ const dataFetch = async()=>{
     productData.value = data
 }
 const openAddProductPage = (productId)=>{
-    window.location.href = `add-new-product.html?id=${productId}`
+    alert(productId, 'id from parent')
+    window.location.href = `/product/${productId}`
 }
 const pushDataToStore = (product) => {
   store.addItem(product)   // ye push karta hai store ke array me
