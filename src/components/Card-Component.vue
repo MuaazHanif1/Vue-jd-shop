@@ -4,7 +4,7 @@
     <img :src="productImage" :alt="productTitle">
       <h3 class="font-bold">{{productTitle}}</h3>
       <p>Rs: {{productPrice}}</p>
-     <button >Buy now</button>
+     <button @click="buyProduct">Buy now</button>
     <button class="delete" @click="deletePro">Delete</button>
     <button class="edit" @click="newAddPage">Edit</button>   
 </div>
@@ -34,4 +34,8 @@ const deletePro = ()=>{
 const newAddPage = ()=>{
     emit('openAddProductPage',props.productId)
 }   
+
+const buyProduct=()=>{
+     emit('Buynow',{id:props.productId,image:props.productImage,Tittle:props. productTitle,Price:props. productPrice})
+}
 </script>

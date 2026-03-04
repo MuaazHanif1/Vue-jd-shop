@@ -1,10 +1,10 @@
 <template>
-    <WelcomeComponent :isButtonNeed="false" heading="Welcome to my Shop" subTitle="fresh deals every day on Shop" buttonText="shop now"></WelcomeComponent> 
-   
+    <!-- <WelcomeComponent :isButtonNeed="false" heading="Welcome to my Shop" subTitle="fresh deals every day on Shop" buttonText="shop now"></WelcomeComponent>  -->
+   <ShopComponents/>
    </template>
    
    <script setup>
-   import WelcomeComponent from '@/components/Welcome-Component.vue';
+   import ShopComponents from '@/components/shop-components.vue'
    
     
    </script>

@@ -11,6 +11,7 @@
                     :productPrice="value.price"
                     @deleteProduct="productDelete"
                     @AddProduct="openAddProductPage"
+                    @Buynow="Buynow"
                 />
         
          </div>
@@ -23,14 +24,16 @@
 }
 </style>
 <script setup>
+import { useMyStore } from '@/stores/MyStore.js'
 import { ref,onMounted } from 'vue';
 import CardComponent from './Card-Component.vue'; 
 onMounted(()=>{
     dataFetch()
 })
 
-let productData = ref([])
 
+const store = useMyStore()
+let productData = ref([])
 const productDelete = async (product_id)=>{
       let response = await fetch(`https://fakestoreapi.com/products/${product_id}`,{
         method: "Delete"
@@ -49,5 +52,8 @@ const dataFetch = async()=>{
 }
 const openAddProductPage = (productId)=>{
     window.location.href = `add-new-product.html?id=${productId}`
+}
+const pushDataToStore = (product) => {
+  store.addItem(product)   // ye push karta hai store ke array me
 }
 </script>
