@@ -10,7 +10,7 @@
                     :productTitle="value.title"
                     :productPrice="value.price"
                     @deleteProduct="productDelete"
-                    @AddProduct="openAddProductPage"
+                    @openAddProductPage="openAddProductPage"
                 />
         
          </div>
@@ -28,6 +28,9 @@ import CardComponent from './Card-Component.vue';
 onMounted(()=>{
     dataFetch()
 })
+import { useRoute } from 'vue-router'
+const route = useRoute()
+console.log(route.params.id)
 
 let productData = ref([])
 
@@ -48,6 +51,7 @@ const dataFetch = async()=>{
     productData.value = data
 }
 const openAddProductPage = (productId)=>{
-    window.location.href = `add-new-product.html?id=${productId}`
+    alert(productId, 'id from parent')
+    window.location.href = `/product/${productId}`
 }
 </script>
