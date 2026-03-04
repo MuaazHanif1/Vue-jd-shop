@@ -24,7 +24,7 @@
 }
 </style>
 <script setup>
-import { useMyStore } from '@/store/MyStore'
+import { useMyStore } from '../store/MyStore'
 import { ref,onMounted } from 'vue';
 import CardComponent from './Card-Component.vue'; 
 onMounted(()=>{
