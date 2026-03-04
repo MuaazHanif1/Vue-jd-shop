@@ -1,6 +1,8 @@
 <template>
     <section class="products mt-[60px] mb-[60px] mr-[40px] ml-[40px]">
-         <h2 class="bg-linear-to-r from-pink-500 to-violet-500 bg-clip-text text-5xl font-extrabold text-transparent uppercase underline margin-top-10">Featured Products</h2>
+        <hr class="bg-linear-to-r from-pink-500 to-violet-500 bg-clip-text">
+         <h2 class="bg-linear-to-r from-pink-500 to-violet-500 bg-clip-text text-5xl font-extrabold text-transparent uppercase underline mt-60px">Featured Products</h2>
+            <p class="text-center text-gray-500 mt-20px mb-20px">Lorem ipsum dolor sit amet consectetur adipisicing elit. Voluptas, eaque.</p>
          <div id="product-list" class="product-list flex-center">
          <CardComponent v-for="value in productData" 
                     :productId="value.id"
@@ -15,7 +17,11 @@
     </section>
 
 </template>
-
+<style scoped>
+.mt-60px{
+    margin-top: 20px;
+}
+</style>
 <script setup>
 import { ref,onMounted } from 'vue';
 import CardComponent from './Card-Component.vue'; 

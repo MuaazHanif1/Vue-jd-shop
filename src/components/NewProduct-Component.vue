@@ -1,36 +1,38 @@
 <template>
-<div class="flex">  
+<div class="flex ">  
     <div class="border-2 flex-col  border-gray-300 rounded-lg p-8 w-[400px] shadow-lg text-center">
         <h2 class="text-2xl font-bold text">Add new Product</h2>
         <!--label-->
         <label>Enter Product Title </label>
         <!--input-->
-        <input class="border-1 border-black-22" type="text" placeholder="e.g: Men shoes" required id="title">
+        <input class="border-1 border-black-22" type="text" placeholder="e.g: Men shoes" required v-model="title">
         <!--label-->
         <label>Enter Product disprection </label>
         <!--input-->
-        <input class="border-1 border-black-22" type="text" placeholder="e.g: Men shoes for runing" required  id="description">
+        <input class="border-1 border-black-22" type="text" placeholder="e.g: Men shoes for runing" required  v-model="description">
         <!--label-->
         <label>Enter Product price </label>
         <!--input-->
-        <input class="border-1 border-black-22" type="number" placeholder="e.g: 99.9 $" required id="price">
+        <input class="border-1 border-black-22" type="number" placeholder="e.g: 99.9 $" required v-model="price">
         <!--label-->
         <label>Enter Product image url </label>
         <!--input-->
-        <input class="border-1 border-black-22" type="text" placeholder="Product image url" required id="img">
+        <input class="border-1 border-black-22" type="text" placeholder="Product image url" required v-model="img">
 
-       <button class="button" type="button" @click="submit" id="button">Submit</button>
+       <button class="button" type="button" @click="submit">Submit</button>
     </div>
 </div>
 </template>
 
 <script setup>
+import { ref } from 'vue';
+
 const submit = () => {
     try{
-        var title = document.getElementById('title').value
-        var description = document.getElementById('description').value
-        var price = document.getElementById('price').value
-        var img = document.getElementById('img').value
+        var title = ref('')
+        var description = ref('')
+        var price = ref('')
+        var img = ref('')
         console.log(title,description,price,img)
     
         var obj = {
@@ -40,13 +42,13 @@ const submit = () => {
             image: img
     
         }
-        if(productId){
-          updateProductFetch(productId,obj)
-        }
-        else{
-            submitPostRequest(obj)
-        }
-        
+        // if(productId){
+        //   updateProductFetch(productId,obj)
+        // }
+        // else{
+            
+        // }
+     submitPostRequest(obj)   
     }
 
     catch(e){
@@ -70,11 +72,11 @@ const submitPostRequest = async (data) => {
     })
     
     var data = await response.json()
-    var allProductList = JSON.parse(localStorage.getItem('ProductList'))
-    allProductList.push(data)
-    localStorage.setItem('ProductList',JSON.stringify(allProductList))
+    // var allProductList = JSON.parse(localStorage.getItem('ProductList'))
+    // allProductList.push(data)
+    // localStorage.setItem('ProductList',JSON.stringify(allProductList))
     alert('Product added successfully!')
-    window.location.href = 'index.html' 
+    // window.location.href = '/' 
     console.log("Successfully created product (mock):", data);
     
   }
@@ -92,6 +94,7 @@ const submitPostRequest = async (data) => {
     flex-direction: column;
     margin-top: 30px;
     margin-bottom: 20px;
+    height: 80%;
 }
 input{
     width: 98%;
